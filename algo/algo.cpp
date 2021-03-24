@@ -3,8 +3,57 @@
 
 using namespace std;
 
+int a = 0;
+
+//필수 문제
+int Factorial(int n) {
+
+	if (n == 0) {
+		return 1;
+	}
+	else {
+		return (n * Factorial(n - 1));
+	}
+	
+}
+
+
+
+//보너스 문제 1
+int Gauss(int max) {
+	return ((1 + max) * max) / 2;
+}
+
+//보너스 문제 2
+int NoGauss(int sum) {
+
+	a += sum;
+	sum--;
+
+	if (sum == 0) {
+		return a;
+	}
+	else {
+		return NoGauss(sum);
+	}
+}
+
+//보너스 문제 3
+int NoFactorial(int max) {
+	// cin >> n --> 1-n까지의 곱  cin >> 4    1*2*3*4
+	int b = 1;
+
+	for (int i = 1; i < max + 1; i++)
+	{
+		b = b * i;
+	}
+	return b;
+
+}
+
 int main() {
 
+	/*
 	//주민등록번호관련
 
 	//000000-0000000
@@ -72,7 +121,8 @@ int main() {
 	{
 		cout << "유효하지않음" << endl;
 	}
-	
+	*/
+	/*
 	//파스칼의 삼각형
 	int a[10][10] = { 0, };
 	int i, j;
@@ -109,7 +159,21 @@ int main() {
 		{
 			cout << s[k][l] << endl;
 		}
-	}
+	*/
+
+
+	//cout << Gauss(100) << endl;	
+
+	/*int n = 0;
+	cin >> n;
+	cout << "1부터 n까지의 곱 : " << Factorial(n);*/
+
+
+	//cout << NoGauss(100);
+
+	int max = 0;
+	cin >> max;
+	cout << NoFactorial(max);
 
 
 	return 0;
