@@ -3,10 +3,10 @@
 
 using namespace std;
 
-int a = 0;
+//int a = 0;
 
-//필수 문제
-int Factorial(int n) {
+#pragma region 팩토리얼
+/*int Factorial(int n) {
 
 	if (n == 0) {
 		return 1;
@@ -15,17 +15,18 @@ int Factorial(int n) {
 		return (n * Factorial(n - 1));
 	}
 	
-}
+}*/
+#pragma endregion
 
 
-
-//보너스 문제 1
-int Gauss(int max) {
+#pragma region 가우스
+/*int Gauss(int max) {
 	return ((1 + max) * max) / 2;
-}
+}*/
+#pragma endregion
 
-//보너스 문제 2
-int NoGauss(int sum) {
+
+/*int NoGauss(int sum) {
 
 	a += sum;
 	sum--;
@@ -36,10 +37,65 @@ int NoGauss(int sum) {
 	else {
 		return NoGauss(sum);
 	}
+}*/
+
+#pragma region 피보나치
+int Fibonacci(int n) {
+	if(n == 1 || n == 2) {
+		return 1;
+	}
+	else {
+		return Fibonacci(n - 1) + Fibonacci(n - 2);
+	}
+
+}
+#pragma endregion
+
+#pragma region 하노이탑
+void HanoiTower(int num, char from, char by, char to) {
+	if (num == 1) {
+		cout << "원반 1을" << from << "에서" << to << "로 이동" << endl;
+	}
+	else {
+		HanoiTower(num - 1, from, to, by);
+
+		cout << "원반" << num << "을" << from << "에서" << to << "로 이동" << endl;
+
+		HanoiTower(num - 1, by, from, to);
+	}
+}
+#pragma endregion
+
+
+/*int NoGauss2(int sum) {
+
+	a += sum;
+	sum--;
+
+	if (sum == 0) {
+		return a;
+	}
+	else {
+		return NoGauss2(sum);
+	}
+}*/
+
+int c = 1;
+
+int Bonus2(int a)
+{
+	//ex: 258 -> 852
+	if (a == 0) {
+		return 0;
+	}
+	else {
+		int b = Bonus2(a / 10) + (a % 10) * c;
+		c *= 10;
+		return b;
+	}
 }
 
-//보너스 문제 3
-int NoFactorial(int max) {
+/*int NoFactorial(int max) {
 	// cin >> n --> 1-n까지의 곱  cin >> 4    1*2*3*4
 	int b = 1;
 
@@ -49,12 +105,12 @@ int NoFactorial(int max) {
 	}
 	return b;
 
-}
+}*/
 
 int main() {
 
-	/*
-	//주민등록번호관련
+	#pragma region 주민등록번호관련
+	/*//주민등록번호관련
 
 	//000000-0000000
 	char arr[14];
@@ -120,8 +176,10 @@ int main() {
 	else
 	{
 		cout << "유효하지않음" << endl;
-	}
-	*/
+	}*/
+	#pragma endregion 
+	
+	#pragma region 파스칼의 삼각형
 	/*
 	//파스칼의 삼각형
 	int a[10][10] = { 0, };
@@ -142,8 +200,11 @@ int main() {
 			cout << endl;
 		}
 	}
-
-	//보너스 문제 -다차원배열 이용 문자열 3개이상 입력받아 문자열 거꾸로 출력
+	*/
+#pragma endregion
+	
+	#pragma region 문자열 거꾸로 출력
+	/*//보너스 문제 -다차원배열 이용 문자열 3개이상 입력받아 문자열 거꾸로 출력
 
 	char s[2][2];
 	for (int k = 0; k < 2; k++)
@@ -159,8 +220,9 @@ int main() {
 		{
 			cout << s[k][l] << endl;
 		}
+	}
 	*/
-
+#pragma endregion
 
 	//cout << Gauss(100) << endl;	
 
@@ -171,10 +233,25 @@ int main() {
 
 	//cout << NoGauss(100);
 
-	int max = 0;
+	/*int max = 0;
 	cin >> max;
-	cout << NoFactorial(max);
+	cout << NoFactorial(max);*/
 
+	/*int a = 0;
+	cin >> a;
+	cout << NoGauss2(a);*/
+
+	/*int d = 0;
+	cin >> d;
+	cout << Bonus2(d);*/
+
+	/*int i;
+	for (i = 1; i < 16; i++)
+	{
+		cout << Fibonacci(i) << endl;
+	}*/
+
+	//HanoiTower(3, 'A', 'B', 'C');
 
 	return 0;
 }
