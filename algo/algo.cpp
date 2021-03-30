@@ -80,9 +80,9 @@ void HanoiTower(int num, char from, char by, char to) {
 	}
 }*/
 
-int c = 1;
+//int c = 1;
 
-int Bonus2(int a)
+/*int Bonus2(int a)
 {
 	//ex: 258 -> 852
 	if (a == 0) {
@@ -93,7 +93,7 @@ int Bonus2(int a)
 		c *= 10;
 		return b;
 	}
-}
+}*/
 
 /*int NoFactorial(int max) {
 	// cin >> n --> 1-n까지의 곱  cin >> 4    1*2*3*4
@@ -106,6 +106,58 @@ int Bonus2(int a)
 	return b;
 
 }*/
+
+
+//필수문제1
+
+int Max(int n[], int c) {
+	int max, i;
+
+	max = n[0];
+
+	for (i = 1; i < c; i++) {
+		if (max < n[i])
+			max = n[i];
+	}
+
+	return max;
+}
+
+//보너스 문제 1
+int s = 0;
+
+int Bonus1(int n) {
+	int c = 0;
+
+	if (n < 10)
+	{
+		c = n;
+		s += n;
+		return s;
+	}
+	else
+	{
+		c = n % 10;
+		s += c;
+		return Bonus1(n / 10);
+	}
+}
+
+//보너스 문제 2
+int Bonus2(int num, int num2)
+{
+	if (num <= 9) {
+		
+		cout << num << "*" << num2 << "=" << num * num2 << endl;
+		if (num2 < 9) {
+			Bonus2(num, num2 + 1);
+		}
+		else {
+			return Bonus2(num + 1, 1);
+		}
+	}
+}
+
 
 int main() {
 
@@ -252,6 +304,25 @@ int main() {
 	}*/
 
 	//HanoiTower(3, 'A', 'B', 'C');
+
+	int a[5];
+	for (int i = 0; i < 5; i++)
+	{
+		cin >> a[i];
+	}
+	cout << Max(a,5);
+
+	/*int b;
+	cin >> b;
+	if (b > 999)
+		cout << Bonus1(b);
+	else
+		cout << "4자리수 이상의 수를 입력해주세요" << endl;*/
+
+	/*int i = 2, j = 1;
+	cout << Bonus2(i, j) << endl;*/
+
+	
 
 	return 0;
 }
