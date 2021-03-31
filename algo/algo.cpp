@@ -108,54 +108,237 @@ void HanoiTower(int num, char from, char by, char to) {
 }*/
 
 
-//필수문제1
+//#define MAX_SIZE 5
+//
+//void GetNumbers(int number[MAX_SIZE])
+//{
+//	int counter = 0;
+//	int numberInput = 0;
+//	int loop = 1;
+//
+//	while (counter < MAX_SIZE)
+//	{
+//		loop = 1;
+//
+//		while (loop == 1)
+//		{
+//			cout << "배열에 저장할 " << counter + 1 << " 번째 정수를 입력하시오" << endl;
+//			fflush(stdin);
+//
+//			cin >> numberInput;
+//
+//			if (numberInput >= 0)
+//			{
+//				number[counter] = numberInput;
+//				++counter;	loop = 0;
+//			}
+//			else
+//			{
+//				cout << "값은 0 이상이여야 됨" << endl;
+//				loop = 1;
+//			}
+//		}
+//
+//	}
+//}
+//int Max(int number[], int i, int last)
+//{
+//	if (i < last)
+//	{
+//		int MaxN = Max(number, i + 1, last);
+//
+//		if (number[i] >= MaxN)
+//		{
+//			return (number[i]);
+//		}
+//		else
+//		{
+//			return (MaxN);
+//		}
+//	}
+//
+//	else
+//	{
+//		return(number[i]);
+//	}
+//}
+//int MaxPos(int number[], int i, int last)
+//{
+//	if (i < last)
+//	{
+//		int j = MaxPos(number, i + 1, last);
+//
+//
+//		if (number[i] >= number[j])
+//		{
+//			return(i);
+//		}
+//		else
+//		{
+//			return(j);
+//		}
+//	}
+//	else
+//	{
+//		return(i);
+//	}
+//
+//}
+//void PrintArray(int number[], int resultIndex, int resultNumber)
+//{
+//	int counter = 0;
+//
+//	cout << "현재 배열에 저장된 값" << endl;
+//
+//	while (counter < MAX_SIZE)
+//	{
+//		cout << number[counter] << endl;
+//		++counter;
+//	}
+//	cout << "최댓값은 " << resultNumber << "이다" << endl;
+//}
 
-int Max(int n[], int c) {
-	int max, i;
+//int s = 0;
+//
+//int Bonus1(int n) {
+//	int c = 0;
+//
+//	if (n < 10)
+//	{
+//		c = n;
+//		s += n;
+//		return s;
+//	}
+//	else
+//	{
+//		c = n % 10;
+//		s += c;
+//		return Bonus1(n / 10);
+//	}
+//}
 
-	max = n[0];
+//int Bonus2(int num, int num2)
+//{
+//	if (num <= 9) {
+//		
+//		cout << num << "*" << num2 << "=" << num * num2 << endl;
+//		if (num2 < 9) {
+//			Bonus2(num, num2 + 1);
+//		}
+//		else {
+//			return Bonus2(num + 1, 1);
+//		}
+//	}
+//}
 
-	for (i = 1; i < c; i++) {
-		if (max < n[i])
-			max = n[i];
+//필수문제 
+int NMinus(int n) {
+	cout << n << endl;
+	if (n == 2) {
+		return 1;
 	}
-
-	return max;
+	else {
+		return NMinus(n - 1);
+	}
 }
+//보너스문제
+int Bonus(int a, int b) {
+	if (a < b) {
+		if (a % 2 != 0) {
 
-//보너스 문제 1
-int s = 0;
-
-int Bonus1(int n) {
-	int c = 0;
-
-	if (n < 10)
-	{
-		c = n;
-		s += n;
-		return s;
-	}
-	else
-	{
-		c = n % 10;
-		s += c;
-		return Bonus1(n / 10);
-	}
-}
-
-//보너스 문제 2
-int Bonus2(int num, int num2)
-{
-	if (num <= 9) {
-		
-		cout << num << "*" << num2 << "=" << num * num2 << endl;
-		if (num2 < 9) {
-			Bonus2(num, num2 + 1);
+			if (a < b - 2) {
+				cout << a + 2 << endl;
+				return Bonus(a + 2, b);
+			}
+			else {
+				return a;
+			}
 		}
 		else {
-			return Bonus2(num + 1, 1);
+			a++;
+			cout << a << endl;
+			if (a < b - 2) {
+				cout << a + 2 << endl;
+				return Bonus(a + 2, b);
+			}
+			else {
+				return a;
+			}
 		}
 	}
+	else {
+		if (b % 2 != 0) {
+
+			if (b < a - 2) {
+				cout << b + 2 << endl;
+				return Bonus(a, b+2);
+			}
+			else {
+				return b;
+			}
+		}
+		else {
+			b++;
+			cout << b << endl;
+			if (b < a - 2) {
+				cout << b + 2 << endl;
+				return Bonus(a, b+2);
+			}
+			else {
+				return b;
+			}
+		}
+	}
+	
+}
+//보너스문제 2
+int Bonus2(int a, int b) {
+	if (a < b) {
+		if (a % 2 == 0) {
+
+			if (a < b - 2) {
+				cout << a + 2 << endl;
+				return Bonus2(a + 2, b);
+			}
+			else {
+				return a;
+			}
+		}
+		else {
+			a++;
+			cout << a << endl;
+			if (a < b - 2) {
+				cout << a + 2 << endl;
+				return Bonus2(a + 2, b);
+			}
+			else {
+				return a;
+			}
+		}
+	}
+	else {
+		if (b % 2 == 0) {
+			if (b < a - 2) {
+				cout << b + 2 << endl;
+				return Bonus2(a, b + 2);
+			}
+			else {
+				return a;
+			}
+		}
+		else {
+			b++;
+			cout << b << endl;
+			if (b < a - 2) {
+				cout << b + 2 << endl;
+				return Bonus2(a, b + 2);
+			}
+			else {
+				return b;
+			}
+		}
+	}
+	
 }
 
 
@@ -305,13 +488,20 @@ int main() {
 
 	//HanoiTower(3, 'A', 'B', 'C');
 
-	int a[5];
-	for (int i = 0; i < 5; i++)
-	{
-		cin >> a[i];
-	}
-	cout << Max(a,5);
+	/*int number[MAX_SIZE] = { 0 };
+	int counter = 0;
 
+	int resultNumber = 0;
+	int resultIndex = 0;
+
+
+	GetNumbers(number);
+
+	resultNumber = Max(number, 0, MAX_SIZE);
+
+	resultIndex = MaxPos(number, 0, MAX_SIZE);
+
+	PrintArray(number, resultIndex, resultNumber);*/
 	/*int b;
 	cin >> b;
 	if (b > 999)
@@ -322,7 +512,19 @@ int main() {
 	/*int i = 2, j = 1;
 	cout << Bonus2(i, j) << endl;*/
 
+	/*int a;
+	cin >> a;
+	cout << NMinus(a);*/
 	
+	/*int a, b;
+	cin >> a;
+	cin >> b;
+	Bonus(a, b);*/
+
+	int a, b;
+	cin >> a;
+	cin >> b;
+	Bonus2(a,b);
 
 	return 0;
 }
