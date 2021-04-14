@@ -1,79 +1,274 @@
 ﻿//20211 손환주
 #include <iostream>
+#include <stack>
+#include <Windows.h>
+#include <vector>
 
 using namespace std;
 
-#define SIZE 10
-
-typedef struct {
-	char stackArr[SIZE];
-	int topindex;
-	char name;
-}stack;
-
-typedef stack* pstack;
-void init(pstack ps, char c);
-
-void push(pstack ps, char ch);
-
-char pop(pstack ps);
-
 int main() {
-	stack s1, s2;
-	int i;
-
-	init(&s1, 'A');
-	init(&s2, 'B');
-	cout << endl;
-	push(&s1, 'd');
-	push(&s1, 'a');
-	push(&s1, 't');
-	push(&s1, 'a');
-
-	push(&s2, 's');
-	push(&s2, 't');
-	push(&s2, 'a');
-	push(&s2, 'c');
-	push(&s2, 'k');
-
-	for (int i = 0; i < 5; i++)
-	{
-		cout << "Pop s1: " << pop(&s1) << endl;
+	//문제 1
+	/*
+	int a;
+	int b;
+	cin >> a;
+	stack<int> stack1;
+	if (a <= 1000) {
+		for (int i = 0; i < a; i++)
+		{
+			cin >> b;
+			stack1.push(b);
+		}
+		for (int j = 0; j < a; j++)
+		{
+			cout << stack1.top() << " ";
+			stack1.pop();
+		}
 	}
-	cout << endl;
+	else {
+		cout << "1000이하 입력하셈" << endl;
+		return 0;
+	}*/
 
-	for (int i = 0; i < 5; i++)
-	{
-		cout << "Pop s2: " << pop(&s2) << endl;
-	}
+
 
 	return 0;
 }
 
-void init(pstack ps, char c) {
-	ps->topindex = 0;
-	ps->name = c;
-	cout << "Constructing stack " << ps->name << endl;
-}
 
-void push(pstack ps, char ch) {
-	if (ps->topindex == SIZE) {
-		cout << "Stak" << ps->name << " is full" << endl;
-		return;
-	}
-	ps->stackArr[ps->topindex] = ch;
-	ps->topindex++;
-}
+//#define SIZE 10
+//
+//typedef struct {
+//	char stackArr[SIZE];
+//	int topindex;
+//	char name;
+//}stack;
+//
+//typedef stack* pstack;
+//void init(pstack ps, char c);
+//
+//void push(pstack ps, char ch);
+//
+//char pop(pstack ps);
 
-char pop(pstack ps) {
-	if (ps->topindex == 0) {
-		cout << "Stack " << ps->name << " is Empty" << endl;
-		return 0;
-	}
-	ps->topindex--;
+//#define MAZESIZE_X 12
+//#define MAZESIZE_Y 22
+//#define EXIT_X 11
+//#define EXIT_Y 16
+//
+//typedef struct Position {
+//	int x;
+//	int y;
+//	int d;
+//} Position;
+//typedef struct Mtable {
+//	int x;
+//	int y;
+//} Mtable;
+//
+//int Maze[MAZESIZE_X][MAZESIZE_Y] = {
+//	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+//	{1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1},
+//	{1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+//	{1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1},
+//	{1,0,0,1,0,1,0,1,0,0,1,1,1,1,1,0,0,1,1,1,0,1},
+//	{1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+//	{1,1,0,1,1,1,0,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1},
+//	{1,0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1},
+//	{1,1,1,0,1,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1},
+//	{1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+//	{1,0,1,0,0,1,0,1,1,1,0,1,0,0,0,1,0,1,0,1,0,1},
+//	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+//};
+//Mtable Move[4] = {
+//	{0,1},
+//	{1,0},
+//	{0,-1},
+//	{-1,0}
+//};
+//int Mark[MAZESIZE_X][MAZESIZE_Y] = {0,};
+//int top;
+//Position Trace[(MAZESIZE_X - 2) * (MAZESIZE_Y - 2)];
+//void ShowMaze(Position);
+//void Push(Position);
+//void Pop(Position* p);
+//
+//int main(void) {
+//	int isFound = false;
+//	int i, dir;
+//	Position Now = { 1,1,0 };
+//	Position Next;
+//	Push(Now);
+//	while (!isFound && top > 0)
+//	{
+//		Pop(&Now);
+//		dir = Now.d;
+//
+//		while (dir < 4)
+//		{
+//			Next.x = Now.x + Move[dir].x;
+//			Next.y = Now.y + Move[dir].y;
+//
+//			if (Next.x == EXIT_X && Next.y == EXIT_Y) {
+//				Next.d = dir;
+//				Push(Next);
+//				isFound = true;
+//				break;
+//			}
+//			else if ((Maze[Next.x][Next.y] == 0) && (Mark[Next.x][Next.y] == 0)) {
+//				Now.d = ++dir;
+//				Push(Now);
+//				Now.x = Next.x;
+//				Now.y = Next.y;
+//				dir = 0;
+//				Mark[Next.x][Next.y] = 1;
+//			}
+//			else {
+//				dir++;
+//			}
+//			ShowMaze(Now);
+//		}
+//	}
+//	if (isFound == true) {
+//		for (int i = 0; i < top; i++)
+//		{
+//			ShowMaze(Trace[i]);
+//		}
+//	}
+//	else {
+//		cout << "Not Found!" << endl;
+//	}
+//	system("pause");
+//
+//	return 0;
+//}
+//
+//void ShowMaze(Position P) {
+//	int i, j;
+//	Sleep(50);
+//	system("cls");
+//	cout << "출구는 (11,16)" << endl;
+//	cout << "현재 좌표는 " << P.x << " " << P.y << " " << P.d << endl;
+//
+//	for ( i = 0; i < MAZESIZE_X; i++)
+//	{
+//		for ( j = 0; j < MAZESIZE_Y; j++)
+//		{
+//			if (Maze[i][j] == 1) cout << "#";
+//			else if (P.x == i && P.y == j) cout << "&";
+//			else cout << " ";
+//		}
+//		cout << endl;
+//	}
+//
+//}
+//void Push(Position P) {
+//	Trace[top].x = P.x;
+//	Trace[top].y = P.y;
+//	Trace[top].d = P.d;
+//	top++;
+//}
+//void Pop(Position* P) {
+//	top--;
+//	P->x = Trace[top].x;
+//	P->y = Trace[top].y;
+//	P->d = Trace[top].d;
+//}
 
-	return ps->stackArr[ps->topindex];
-}
+//
+////문제1
+//	/*stack s1, s2;
+//	int i;
+//
+//	init(&s1, 'A');
+//	init(&s2, 'B');
+//	cout << endl;
+//	push(&s1, 'd');
+//	push(&s1, 'a');
+//	push(&s1, 't');
+//	push(&s1, 'a');
+//
+//	push(&s2, 's');
+//	push(&s2, 't');
+//	push(&s2, 'a');
+//	push(&s2, 'c');
+//	push(&s2, 'k');
+//
+//	for (int i = 0; i < 5; i++)
+//	{
+//		cout << "Pop s1: " << pop(&s1) << endl;
+//	}
+//	cout << endl;
+//
+//	for (int i = 0; i < 5; i++)
+//	{
+//		cout << "Pop s2: " << pop(&s2) << endl;
+//	}*/
+//
+//
+//	//문제 2
+//
+//	//2반 건욱이가 도와줬습니다
+//stack<int, vector<int>> st;
+//string as;
+//cin >> as;
+//
+//for (int i = 0; i < as.length(); i++)
+//{
+//	if (0 < as[i] - '0' && as[i] - '0' < 9) {
+//		st.push(as[i]);
+//	}
+//	else {
+//		cout << "숫자 이외 ㄴㄴ";
+//		return 0;
+//	}
+//}
+//while (!st.empty())
+//{
+//	cout << st.top() - '0';
+//	st.pop();
+//}
+//cout << endl;
+//
+//
+////문제 3
+///*stack<int> s;
+//int a[3];
+//for (int i = 0; i < 3; i++)
+//{
+//	cin >> a[i];
+//	s.push(a[i]);
+//}
+//while (!s.empty())
+//{
+//	cout << s.top() << endl;
+//	s.pop();
+//}*/
+
+//void init(pstack ps, char c) {
+//	ps->topindex = 0;
+//	ps->name = c;
+//	cout << "Constructing stack " << ps->name << endl;
+//}
+//
+//void push(pstack ps, char ch) {
+//	if (ps->topindex == SIZE) {
+//		cout << "Stak" << ps->name << " is full" << endl;
+//		return;
+//	}
+//	ps->stackArr[ps->topindex] = ch;
+//	ps->topindex++;
+//}
+//
+//char pop(pstack ps) {
+//	if (ps->topindex == 0) {
+//		cout << "Stack " << ps->name << " is Empty" << endl;
+//		return 0;
+//	}
+//	ps->topindex--;
+//
+//	return ps->stackArr[ps->topindex];
+//}
 
 #pragma region 대충 정리
 ////int a = 0;
