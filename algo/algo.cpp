@@ -1,39 +1,272 @@
 ﻿//20211 손환주
 #include <iostream>
-#include <stack>
+//#include <stack>
 #include <Windows.h>
 #include <vector>
-
+#include <queue>
+#include <string>
 using namespace std;
 
+
+//int main() {
+//	//문제 1
+//
+//	/*int a;
+//	int b;
+//	cin >> a;
+//	stack<int> stack1;
+//	if (a <= 1000) {
+//		for (int i = 0; i < a; i++)
+//		{
+//			cin >> b;
+//			stack1.push(b);
+//		}
+//		for (int j = 0; j < a; j++)
+//		{
+//			cout << stack1.top() << " ";
+//			stack1.pop();
+//		}
+//	}
+//	else {
+//		cout << "1000이하 입력하셈" << endl;
+//		return 0;
+//	}*/
+//
+//	//문제 2
+//	
+//
+//	return 0;
+//}
+
+
+//큐 구현하기
+
+/*#define NEXT(index, QSIZE) ((index+1)%QSIZE)
+
+typedef struct Queue {
+	int* buf;
+	int qsize;
+	int front;
+	int rear;
+	int count;
+}Queue;
+
+void InitQueue(Queue* queue, int qsize);
+int IsFull(Queue* queue);
+int IsEmpty(Queue* queue);
+void Enqueue(Queue* queue, int data);
+int Dequeue(Queue* queue);
+
 int main() {
-	//문제 1
-	/*
-	int a;
-	int b;
-	cin >> a;
-	stack<int> stack1;
-	if (a <= 1000) {
-		for (int i = 0; i < a; i++)
-		{
-			cin >> b;
-			stack1.push(b);
-		}
-		for (int j = 0; j < a; j++)
-		{
-			cout << stack1.top() << " ";
-			stack1.pop();
-		}
+	int i;
+	Queue queue;
+	InitQueue(&queue, 10);
+	for (int i = 1; i <= 5; i++)
+	{
+		cout << i << "입력" << endl;
+		Enqueue(&queue, i);
 	}
-	else {
-		cout << "1000이하 입력하셈" << endl;
-		return 0;
-	}*/
+	cout << endl;
+	while (!IsEmpty(&queue))
+	{
+		cout << Dequeue(&queue) << "출력" << endl;
+	}
+	cout << endl;
 
 
 
 	return 0;
 }
+void InitQueue(Queue* queue, int qsize) {
+	queue->buf = new int[qsize];
+	queue->qsize = qsize;
+	queue->front = queue->rear = 0;
+	queue->count = 0;
+}
+int IsFull(Queue* queue) {
+	return queue->count == queue->qsize;
+}
+int IsEmpty(Queue* queue) {
+	return queue->count == 0;
+}
+void Enqueue(Queue* queue, int data) {
+	if (IsFull(queue)) {
+		cout << "꽉찼다"<<endl;
+		return;
+	}
+	queue->buf[queue->rear] = data;
+	queue->rear = NEXT(queue->rear, queue->qsize);
+	queue->count++;
+}
+int Dequeue(Queue* queue) {
+	int re = 0;
+	if (IsEmpty(queue)) {
+		cout << "비었다" << endl;
+		return re;
+	}
+	re = queue->buf[queue->front];
+	queue->front = NEXT(queue->front, queue->qsize);
+	queue->count--;
+	return re;
+}*/
+
+//큐 삽입 삭제
+
+/*#define QUEUE_SIZE 5
+#define NEXT(index) ((index+1)%QUEUE_SIZE)
+
+typedef struct Queue {
+	int buf[QUEUE_SIZE];
+	int front;
+	int rear;
+}Queue;
+
+void InitQueue(Queue* queue);
+int IsFull(Queue* queue);
+int IsEmpty(Queue* queue);
+void Enqueue(Queue* queue, int data);
+int Dequeue(Queue* queue);
+
+int main(void) {
+	int select = -1;
+	Queue queue;
+	InitQueue(&queue);
+	while (1)
+	{
+		cout << "1.Enqueue 2.Dequeue" << endl;
+		cout << ">>";
+		cin >> select;
+		switch (select)
+		{
+		case 1:
+			int value;
+			cout << "inputdata:";
+			cin >> value;
+			Enqueue(&queue, value);
+			break;
+		case 2:
+			Dequeue(&queue);
+			break;
+		}
+		cout << endl;
+	}
+
+
+
+}
+void InitQueue(Queue* queue) {
+	queue->front = queue->rear = 0;
+}
+int IsFull(Queue* queue) {
+	return NEXT(queue->rear) == queue->front;
+}
+int IsEmpty(Queue* queue) {
+	return queue->front == queue->rear;
+}
+void Enqueue(Queue* queue, int data) {
+	if (IsFull(queue)) {
+		cout << "꽉찼다" << endl;
+		return;
+	}
+	queue->buf[queue->rear] = data;
+	queue->rear = NEXT(queue->rear);
+}
+int Dequeue(Queue* queue) {
+	int re = 0;
+	if (IsEmpty(queue)) {
+		cout << "비었다" << endl;
+		return re;
+	}
+	re = queue->buf[queue->front];
+	queue->front = NEXT(queue->front, queue->qsize);
+	cout << "dequeue : " << re;
+	return re;
+}*/
+
+//원형 큐 실습
+
+//#define NEXT(index,QSIZE) ((index+1)%QSIZE)
+//
+//typedef struct Queue {
+//	int* buf;
+//	int qsize;
+//	int front;
+//	int rear;
+//	int count;
+//}Queue;
+//
+//void InitQueue(Queue* queue,int qsize);
+//int IsFull(Queue* queue);
+//int IsEmpty(Queue* queue);
+//void Enqueue(Queue* queue, int data);
+//int Dequeue(Queue* queue);
+//
+//int main() {
+//	int i, size;
+//	int select = -1;
+//	Queue queue;
+//
+//	cout << "큐 크기 입력 :";
+//	cin >> size;
+//
+//	InitQueue(&queue, size);
+//	
+//	while (1)
+//	{
+//		cout << "1.Enqueue 2.Dequeue" << endl;
+//		cout << ">>";
+//		cin >> select;
+//		switch (select)
+//		{
+//		case 1:
+//			int value;
+//			cout << "inputdata:";
+//			cin >> value;
+//			Enqueue(&queue, value);
+//			break;
+//		case 2:
+//			Dequeue(&queue);
+//			break;
+//		}
+//		cout << endl;
+//	}
+//
+//
+//}
+//void InitQueue(Queue* queue, int qsize) {
+//	queue->buf = new int[qsize];
+//	queue->qsize = qsize;
+//	queue->front = queue->rear = 0;
+//	queue->count = 0;
+//}
+//int IsFull(Queue* queue) {
+//	return queue->count == queue->qsize;
+//}
+//int IsEmpty(Queue* queue) {
+//	return queue->count == 0;
+//}
+//void Enqueue(Queue* queue, int data) {
+//	if (IsFull(queue)) {
+//		cout << "꽉찼다" << endl;
+//		return;
+//	}
+//	queue->buf[queue->rear] = data;
+//	queue->rear = NEXT(queue->rear, queue->qsize);
+//	queue->count++;
+//}
+//int Dequeue(Queue* queue) {
+//	int re = 0;
+//	if (IsEmpty(queue)) {
+//		cout << "비었다" << endl;
+//		return re;
+//	}
+//	re = queue->buf[queue->front];
+//	queue->front = NEXT(queue->front, queue->qsize);
+//	cout << "dequeue : " << re;
+//	queue->count--;
+//	return re;
+//}
+
 
 
 //#define SIZE 10
@@ -50,6 +283,300 @@ int main() {
 //void push(pstack ps, char ch);
 //
 //char pop(pstack ps);
+
+
+
+//typedef struct linked {
+//	int data;
+//	struct linked* next;
+//}node;
+//
+//node* head = NULL;
+//node* tail = NULL;
+//
+//void Init();
+//void Insert(node* ptr);
+//void PrintList(node* ptr);
+//void Modify(node* ptr);
+//void InsertData(node* ptr);
+//void Delete(node* ptr);
+//
+//int main() {
+//	int menu = 0;
+//	Init();
+//
+//	while (true)
+//	{
+//		cout << "1.입력 2.출력 3.수정 4.삽입 5.삭제 6.종료" << endl;
+//		cout << "input menu : ";
+//		cin >> menu;
+//
+//		switch (menu)
+//		{
+//		case 1:
+//			Insert(tail);
+//			break;
+//		case 2:
+//			PrintList(head);
+//			break;
+//		case 3:
+//			Modify(head);
+//			break;
+//		case 4:
+//			InsertData(head);
+//			break;
+//		case 5:
+//			Delete(head);
+//			break;
+//		case 6:
+//			break;
+//		default:
+//			cout << "select menu error.." << endl;
+//			//break;
+//		}
+//		if (menu == 6) break;
+//	}
+//	return 0;
+//}
+//void Init() {
+//	head = new node;
+//	head->data = 0;
+//	head->next = NULL;
+//	tail = head;
+//	return;
+//}
+//void Insert(node* ptr) {
+//	node* newnode = new node;
+//	int num = 0;
+//	cout << "Input number : ";
+//	cin >> num;
+//
+//	newnode->data = num;
+//	newnode->next = NULL;
+//
+//	ptr->next = newnode;
+//	tail = newnode;
+//
+//	return;
+//}
+//void PrintList(node* ptr) {
+//	node* view = ptr->next;
+//
+//	while (view != NULL)
+//	{
+//		cout << view->data;
+//		view = view->next;
+//	}
+//	cout << endl;
+//	return;
+//}
+//void Modify(node* ptr) {
+//	int index = 0;
+//	int num = 0;
+//	int i;
+//
+//	cout << "input modify index : ";
+//	cin >> index;
+//
+//	cout << "input modify data : ";
+//	cin >> num;
+//
+//	for (i = 0; i < index; i++)
+//	{
+//		ptr = ptr->next;
+//	}
+//	ptr->data = num;
+//	return;
+//}
+//void InsertData(node* ptr) {
+//	node* newnode = new node;
+//
+//	int index = 0, num = 0;
+//	int i;
+//
+//	cout << "input InsertData index: ";
+//	cin >> index;
+//
+//	cout << "input data: ";
+//	cin >> num;
+//
+//	for (i = 0; i < index; i++)
+//	{
+//		ptr = ptr->next;
+//	}
+//	newnode->data = num;
+//	newnode->next = NULL;
+//	if (ptr->next == NULL) {
+//		ptr->next = newnode;
+//		tail = newnode;
+//	}
+//	else {
+//		newnode->next = ptr->next;
+//		ptr->next = newnode;
+//	}
+//	return;
+//}
+//void Delete(node* ptr) {
+//	node* temp = 0;
+//	int i;
+//	int index;
+//
+//	if (head == tail) {
+//		cout << "not found data" << endl;
+//		return;
+//	}
+//	cout << "input delete index: ";
+//	cin >> index;
+//
+//	for (i = 0; i < index - 1; i++)
+//	{
+//		ptr = ptr->next;
+//	}
+//	temp = ptr->next;
+//
+//	if (temp->next == NULL) {
+//		ptr->next = NULL;
+//		tail = ptr;
+//	}
+//	else {
+//		ptr->next = temp->next;
+//	}
+//	delete(temp);
+//	return;
+//}
+
+//struct Node {
+//	int data;
+//	struct Node* nextNode;
+//	struct Node* prevNode;
+//};
+//struct Node* CreateNode(int data) {
+//	Node* temp = new Node;
+//	temp->data = data;
+//	temp->nextNode = NULL;
+//	temp->prevNode = NULL;
+//	return temp;
+//}
+//void AppendNode(Node** head, Node* newNode) {
+//	if (*head == NULL) {
+//		*head = newNode;
+//	}
+//	else {
+//		Node* tail = *head;
+//
+//		while (tail->nextNode !=NULL)
+//		{
+//			tail = tail->nextNode;
+//		}
+//		tail->nextNode = newNode;
+//		newNode->prevNode = tail;
+//		newNode->nextNode = NULL;
+//	}
+//}
+//int CountNode(Node** head) {
+//	int count = 0;
+//	struct Node* current = *head;
+//	while (current != NULL) {
+//		current = current->nextNode;
+//		count++;
+//	}
+//	return count;
+//}
+//struct Node* SearchNode(Node** head, int index) {
+//	struct Node* current = *head;
+//	while (current->nextNode !=NULL && -(index) >= 0)
+//	{
+//		current = current->nextNode;
+//	}
+//	return current;
+//}
+//void RemoveNode(Node** head, Node* remove) {
+//	if (*head == NULL) {
+//		cout << endl << "There is no list data." << endl << endl;
+//
+//		*head = remove->nextNode;
+//		remove->prevNode = NULL;
+//		remove->nextNode = NULL;
+//		delete(remove);
+//	}
+//	else {
+//		Node* temp = *head;
+//		while (temp->nextNode != remove)
+//		{
+//			temp = temp->nextNode;
+//		}
+//		temp->nextNode = remove->nextNode;
+//		remove->nextNode->prevNode = temp;
+//		remove->nextNode = NULL;
+//		remove->prevNode = NULL;
+//		delete(remove);
+//	}
+//}
+//void InsertNodeAfter(Node* current, Node* newNode) {
+//	newNode->prevNode = current;
+//	newNode->nextNode = current->nextNode;
+//	current->nextNode->prevNode = newNode;
+//	current->nextNode = newNode;
+//}
+//void InsertNodeBefore(Node* current, Node* newNode) {
+//	newNode->prevNode = current;
+//	newNode->nextNode = current->prevNode;
+//	current->prevNode->nextNode = newNode;
+//}
+//int main() {
+//	Node* node = NULL;
+//	Node* head = NULL;
+//	Node* mynode = NULL;
+//
+//	int i = 0;
+//	int count = 0;
+//	for ( i = 0; i < 10; i++)
+//	{
+//		node = CreateNode(i);
+//		AppendNode(&head, node);
+//	}
+//	cout << endl << "counting Node.." << endl << endl;
+//	count = CountNode(&head);
+//	cout << count << endl;
+//	cout << endl << "Checking Node" << endl << endl;
+//	for ( i = 0; i < count; i++)
+//	{
+//		mynode = SearchNode(&head, i);
+//		cout << "[" << i << "]" << mynode->data << endl;
+//	}
+//	cout << endl << "removing node" << endl;
+//	mynode = SearchNode(&head, 3);
+//	RemoveNode(&head, mynode);
+//	count = CountNode(&head);
+//	for (i = 0; i < count; i++)
+//	{
+//		mynode = SearchNode(&head, i);
+//		cout << "[" << i << "]" << mynode->data << endl;
+//	}
+//	cout << endl << "inserting after node" << endl;
+//	node = CreateNode(3000);
+//	mynode = SearchNode(&head, 6);
+//	InsertNodeAfter(mynode, node);
+//
+//	count = CountNode(&head);
+//	for (i = 0; i < count; i++)
+//	{
+//		mynode = SearchNode(&head, i);
+//		
+//		printf_s("[%d] %d \n", i, mynode->data);
+//	}
+//	cout << "inserting before node" << endl;
+//	node = CreateNode(1000);
+//	mynode = SearchNode(&head, 2);
+//	InsertNodeBefore(mynode, node);
+//	count = CountNode(&head);
+//	for (i = 0; i < count; i++)
+//	{
+//		mynode = SearchNode(&head, i);
+//		cout << "[" << i << "]" << mynode->data << endl;
+//	}
+//	return 0;
+//}
 
 //#define MAZESIZE_X 12
 //#define MAZESIZE_Y 22
