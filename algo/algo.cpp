@@ -10,8 +10,54 @@
 
 using namespace std;
 
-int main() {
+//자료형의 정의
+typedef BTData int;
 
+struct BTreeNode {
+	BTData data;
+	struct BTreeNode* left;
+	struct BTreeNode* right;
+};
+
+//함수의 정의부분
+//선언된 자료형으로 변수 생성
+BTreeNode* MakeBTreeNode(void) {
+	BTreeNode* nd = new BTreeNode;
+
+	nd->left = NULL;
+	nd->right = NULL;
+	return nd;
+}
+//메모리 삭제함수 생성
+void DeleteBTreeNode(BTreeNode* bt) {
+	delete bt;
+}
+//변수에 값설정
+void SetData(BTreeNode* bt, BTData data) {
+	bt->data = data;
+}
+//이진트리의 관계 설정
+void MakeLeftSubTree(BTreeNode* main, BTreeNode* sub) {
+	if (main->left != NULL) {
+		delete main->left;
+	}
+
+	main->left = sub;
+}
+void MakeRightSubTree(BTreeNode* main, BTreeNode* sub) {
+	if (main->right != NULL) {
+		delete main->right;
+	}
+	main->right = sub;
+}
+
+int main() {
+	BTreeNode* bt1 = MakeBTreeNode(); //메인 함수에서 사용할 함수
+	DeleteBTreeNode(bt);
+	SetData(bt1, 1);
+
+	MakeLeftSubTree(bt1, bt2);
+	MakeRightSubTree(bt1, bt3);
 
 	return 0;
 }
