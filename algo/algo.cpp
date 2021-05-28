@@ -11,7 +11,7 @@
 using namespace std;
 
 //자료형의 정의
-typedef BTData int;
+typedef int BTData;
 
 struct BTreeNode {
 	BTData data;
@@ -32,9 +32,19 @@ BTreeNode* MakeBTreeNode(void) {
 void DeleteBTreeNode(BTreeNode* bt) {
 	delete bt;
 }
+BTData GetData(BTreeNode* bt) {
+	return bt->data;
+}
 //변수에 값설정
 void SetData(BTreeNode* bt, BTData data) {
 	bt->data = data;
+}
+
+BTreeNode* GetLeftSubTree(BTreeNode* bt) {
+	return bt->left;
+}
+BTreeNode* GetRightSubTree(BTreeNode* bt) {
+	return bt->right;
 }
 //이진트리의 관계 설정
 void MakeLeftSubTree(BTreeNode* main, BTreeNode* sub) {
@@ -53,11 +63,26 @@ void MakeRightSubTree(BTreeNode* main, BTreeNode* sub) {
 
 int main() {
 	BTreeNode* bt1 = MakeBTreeNode(); //메인 함수에서 사용할 함수
-	DeleteBTreeNode(bt);
+	BTreeNode* bt2 = MakeBTreeNode();
+	BTreeNode* bt3 = MakeBTreeNode();
+	BTreeNode* bt4 = MakeBTreeNode();
+
 	SetData(bt1, 1);
+	SetData(bt2, 2);
+	SetData(bt3, 3);
+	SetData(bt4, 4);
 
 	MakeLeftSubTree(bt1, bt2);
 	MakeRightSubTree(bt1, bt3);
+	MakeLeftSubTree(bt2, bt4);
+
+	cout << GetData(GetLeftSubTree(bt1)) << endl;
+	cout << GetData(GetLeftSubTree(GetLeftSubTree(bt1))) << endl;
+
+	DeleteBTreeNode(bt1);
+	DeleteBTreeNode(bt2);
+	DeleteBTreeNode(bt3);
+	DeleteBTreeNode(bt4);
 
 	return 0;
 }
