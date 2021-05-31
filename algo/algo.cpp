@@ -7,82 +7,42 @@
 #include <string>
 #include <ctype.h> 
 #include <stdlib.h>
+#include "BinaryTree.h"
 
 using namespace std;
 
-//자료형의 정의
-typedef int BTData;
 
-struct BTreeNode {
-	BTData data;
-	struct BTreeNode* left;
-	struct BTreeNode* right;
-};
 
 //함수의 정의부분
 //선언된 자료형으로 변수 생성
-BTreeNode* MakeBTreeNode(void) {
-	BTreeNode* nd = new BTreeNode;
-
-	nd->left = NULL;
-	nd->right = NULL;
-	return nd;
-}
-//메모리 삭제함수 생성
-void DeleteBTreeNode(BTreeNode* bt) {
-	delete bt;
-}
-BTData GetData(BTreeNode* bt) {
-	return bt->data;
-}
-//변수에 값설정
-void SetData(BTreeNode* bt, BTData data) {
-	bt->data = data;
-}
-
-BTreeNode* GetLeftSubTree(BTreeNode* bt) {
-	return bt->left;
-}
-BTreeNode* GetRightSubTree(BTreeNode* bt) {
-	return bt->right;
-}
-//이진트리의 관계 설정
-void MakeLeftSubTree(BTreeNode* main, BTreeNode* sub) {
-	if (main->left != NULL) {
-		delete main->left;
-	}
-
-	main->left = sub;
-}
-void MakeRightSubTree(BTreeNode* main, BTreeNode* sub) {
-	if (main->right != NULL) {
-		delete main->right;
-	}
-	main->right = sub;
-}
 
 int main() {
 	BTreeNode* bt1 = MakeBTreeNode(); //메인 함수에서 사용할 함수
 	BTreeNode* bt2 = MakeBTreeNode();
 	BTreeNode* bt3 = MakeBTreeNode();
 	BTreeNode* bt4 = MakeBTreeNode();
+	BTreeNode* bt5 = MakeBTreeNode();
+	BTreeNode* bt6 = MakeBTreeNode();
 
 	SetData(bt1, 1);
 	SetData(bt2, 2);
 	SetData(bt3, 3);
 	SetData(bt4, 4);
+	SetData(bt5, 5);
+	SetData(bt6, 6);
 
 	MakeLeftSubTree(bt1, bt2);
 	MakeRightSubTree(bt1, bt3);
 	MakeLeftSubTree(bt2, bt4);
+	MakeRightSubTree(bt2, bt5);
+	MakeRightSubTree(bt3, bt6);
 
-	cout << GetData(GetLeftSubTree(bt1)) << endl;
-	cout << GetData(GetLeftSubTree(GetLeftSubTree(bt1))) << endl;
-
-	DeleteBTreeNode(bt1);
-	DeleteBTreeNode(bt2);
-	DeleteBTreeNode(bt3);
-	DeleteBTreeNode(bt4);
+	PreorderTraverse(bt1);
+	cout << endl;
+	InorderTraverse(bt1);
+	cout << endl;
+	PostorderTraverse(bt1);
+	cout << endl;
 
 	return 0;
 }

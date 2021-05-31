@@ -140,6 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="algo.cpp" />
+    <ClCompile Include="BinaryTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BinaryTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
