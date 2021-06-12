@@ -35,6 +35,10 @@ void MakeLeftSubTree(BTreeNode* main, BTreeNode* sub) {
 
 	main->left = sub;
 }
+void MakeSubTree(BTreeNode* main[]) {
+	int i = 0;
+	
+}
 void MakeRightSubTree(BTreeNode* main, BTreeNode* sub) {
 	if (main->right != NULL) {
 		delete main->right;

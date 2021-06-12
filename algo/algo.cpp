@@ -12,37 +12,35 @@
 using namespace std;
 
 
-
-//함수의 정의부분
-//선언된 자료형으로 변수 생성
-
 int main() {
-	BTreeNode* bt1 = MakeBTreeNode(); //메인 함수에서 사용할 함수
-	BTreeNode* bt2 = MakeBTreeNode();
-	BTreeNode* bt3 = MakeBTreeNode();
-	BTreeNode* bt4 = MakeBTreeNode();
-	BTreeNode* bt5 = MakeBTreeNode();
-	BTreeNode* bt6 = MakeBTreeNode();
+	BTreeNode* btreeNode[100] = { 0, };
+	int max;
+	int preorderArr[100] = { 0, };
+	int postorderArr[100] = { 0, };
 
-	SetData(bt1, 1);
-	SetData(bt2, 2);
-	SetData(bt3, 3);
-	SetData(bt4, 4);
-	SetData(bt5, 5);
-	SetData(bt6, 6);
+	cin >> max;
+	/*for (int i = 0; i < max; i++)
+	{
+		cin >> preorderArr[i];
+	}
+	for (int j = 0; j < max; j++)
+	{
+		cin >> postorderArr[j];
+	}*/
+	for (int i = 0; i < max + 1; i++)
+	{
+		btreeNode[i] = MakeBTreeNode();
+		SetData(btreeNode[i], i);
+	}
+	MakeSubTree(btreeNode);
+	PreorderTraverse(btreeNode[0]);
+	cout << endl;
+	InorderTraverse(btreeNode[0]);
+	cout << endl;
+	PostorderTraverse(btreeNode[0]);
+	cout << endl;
 
-	MakeLeftSubTree(bt1, bt2);
-	MakeRightSubTree(bt1, bt3);
-	MakeLeftSubTree(bt2, bt4);
-	MakeRightSubTree(bt2, bt5);
-	MakeRightSubTree(bt3, bt6);
 
-	PreorderTraverse(bt1);
-	cout << endl;
-	InorderTraverse(bt1);
-	cout << endl;
-	PostorderTraverse(bt1);
-	cout << endl;
 
 	return 0;
 }
