@@ -27,12 +27,13 @@ int main() {
 	{
 		cin >> postorderArr[j];
 	}*/
-	for (int i = 0; i < max + 1; i++)
+	for (int i = 0; i < max; i++)
 	{
 		btreeNode[i] = MakeBTreeNode();
 		SetData(btreeNode[i], i);
 	}
 	MakeSubTree(btreeNode);
+	
 	PreorderTraverse(btreeNode[0]);
 	cout << endl;
 	InorderTraverse(btreeNode[0]);
@@ -1049,7 +1050,7 @@ int Dequeue(Queue* queue) {
 //
 //
 ////문제 3
-///*stack<int> s;
+/*//stack<int> s;
 //int a[3];
 //for (int i = 0; i < 3; i++)
 //{
